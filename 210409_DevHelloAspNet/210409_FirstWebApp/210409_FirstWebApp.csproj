@@ -69,12 +69,20 @@
   <ItemGroup>
     <Content Include="Content\main.css" />
     <Content Include="FrmAppSession.aspx" />
+    <Content Include="FrmButton.aspx" />
+    <Content Include="FrmControls.aspx" />
+    <Content Include="FrmFileUpload.aspx" />
     <Content Include="FrmPageLoad.aspx" />
     <Content Include="FrmRequest.aspx" />
     <Content Include="FrmResponseBuffer.aspx" />
     <Content Include="FrmResponseWrite.aspx" />
+    <Content Include="FrmRichControl.aspx" />
     <Content Include="FrmServer.aspx" />
+    <Content Include="FrmStandardControl.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="Images\ASP-NET-Banners-01.png" />
+    <Content Include="Images\ASP-NET-Banners-02.png" />
+    <Content Include="Images\btn_post.gif" />
     <Content Include="index.aspx" />
     <Content Include="result_Image\FrmAppSession_result.PNG" />
     <Content Include="result_Image\FrmPageLoad_result001.png" />
@@ -94,6 +102,27 @@
     </Compile>
     <Compile Include="FrmAppSession.aspx.designer.cs">
       <DependentUpon>FrmAppSession.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FrmButton.aspx.cs">
+      <DependentUpon>FrmButton.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FrmButton.aspx.designer.cs">
+      <DependentUpon>FrmButton.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FrmControls.aspx.cs">
+      <DependentUpon>FrmControls.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FrmControls.aspx.designer.cs">
+      <DependentUpon>FrmControls.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FrmFileUpload.aspx.cs">
+      <DependentUpon>FrmFileUpload.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FrmFileUpload.aspx.designer.cs">
+      <DependentUpon>FrmFileUpload.aspx</DependentUpon>
     </Compile>
     <Compile Include="FrmPageLoad.aspx.cs">
       <DependentUpon>FrmPageLoad.aspx</DependentUpon>
@@ -123,12 +152,26 @@
     <Compile Include="FrmResponseWrite.aspx.designer.cs">
       <DependentUpon>FrmResponseWrite.aspx</DependentUpon>
     </Compile>
+    <Compile Include="FrmRichControl.aspx.cs">
+      <DependentUpon>FrmRichControl.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FrmRichControl.aspx.designer.cs">
+      <DependentUpon>FrmRichControl.aspx</DependentUpon>
+    </Compile>
     <Compile Include="FrmServer.aspx.cs">
       <DependentUpon>FrmServer.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="FrmServer.aspx.designer.cs">
       <DependentUpon>FrmServer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FrmStandardControl.aspx.cs">
+      <DependentUpon>FrmStandardControl.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FrmStandardControl.aspx.designer.cs">
+      <DependentUpon>FrmStandardControl.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -143,6 +186,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Files\NanumFontSetup_TTF_GOTHIC.zip" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
