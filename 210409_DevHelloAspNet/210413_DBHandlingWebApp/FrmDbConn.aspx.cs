@@ -20,6 +20,8 @@ namespace _210413_DBHandlingWebApp
         {
             // Sql데이터 그리드 뷰
             // Sql커맨드? 게시판
+
+            // INSERT 쿼리로 데이터 넣기
             var connString = ConfigurationManager.ConnectionStrings["ConnString"].ConnectionString;
 
             using (SqlConnection conn = new SqlConnection(connString))
