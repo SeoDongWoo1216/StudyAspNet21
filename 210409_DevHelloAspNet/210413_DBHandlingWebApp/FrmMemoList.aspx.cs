@@ -21,7 +21,7 @@ namespace _210413_DBHandlingWebApp
             {
                 if (conn.State == System.Data.ConnectionState.Closed) conn.Open();
 
-                SqlCommand cmd = new SqlCommand("ListMemo", conn);  // 저장 프로시저 ListMemo 를 호출
+                SqlCommand cmd = new SqlCommand("ListMemo", conn);  // 저장 프로시저 ListMemo 를 호출(SELECT 문)
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 DataSet ds = new DataSet();
