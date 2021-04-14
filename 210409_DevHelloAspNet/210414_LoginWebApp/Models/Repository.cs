@@ -51,16 +51,17 @@ namespace _210414_LoginWebApp.Models
 
             conn.Open();
             var result = cmd.ExecuteNonQuery();
-             /*
-              0414 오류 : 아이디, 비번을 입력하면 데이터가 저장은되는데 프로시저호출이안됬다. UID의 ID사양을 예.로 했어야함.
-              이유 => ID사양은 굳이 데이터를입력하지않아도 자동으로 데이터가 들어가는데, ID사양을 아니오. 로 했기때문에
-              UID 데이터를 따로 넣어줘야해서 오류가 뜬것(3개 입력해야하는데 프로시저는 2개만 입력하라고 되있음)
-             */
+            /*
+             0414 오류 : 아이디, 비번을 입력하면 데이터가 저장은되는데 프로시저호출이안됬다. UID의 ID사양을 예.로 했어야함.
+             이유 => ID사양은 굳이 데이터를입력하지않아도 자동으로 데이터가 들어가는데, ID사양을 아니오. 로 했기때문에
+             UID 데이터를 따로 넣어줘야해서 오류가 뜬것(3개 입력해야하는데 프로시저는 2개만 입력하라고 되있음)
+            */
 
             conn.Close();
 
             return result;  // 0 or 1 반환 (ExecuteNonQuery()에서 Add 됬느냐 안됬느냐를 반환함)
         }
+
 
         public User GetUserByUserID(string userId)  // 유저 ID값으로 검색하는 실행문
         {
