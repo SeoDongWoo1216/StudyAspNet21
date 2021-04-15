@@ -12,7 +12,8 @@ namespace _210414_DotNetNote
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-           // Response.Write(StringLibrary.CutString("안녕하세요. 부경대학교입니다.", 10);
+            // Response.Write(StringLibrary.CutString("안녕하세요. 부경대학교입니다.", 10);
+            BoardLibrary.LOGGER.Info(".Net Note 게시판 시작");
         }
     }
 }
