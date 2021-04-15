@@ -1,4 +1,8 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="BoardWrite.aspx.cs" Inherits="_210414_DotNetNote.Board.BoardWrite" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" 
+    CodeBehind="BoardWrite.aspx.cs" Inherits="_210414_DotNetNote.Board.BoardWrite" 
+    ValidateRequest="false"  %>
+<%--ValidateRequest를 통해 오류나오면 패쓰시켜줌--%>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <h3 class="text-center">게시판 글쓰기</h3>
     <asp:Label ID="LblTitleDescription" runat="server" />
@@ -42,8 +46,7 @@
             <asp:RegularExpressionValidator ID="valEmail" runat="server" 
                 ErrorMessage="* 메일형식이 올바르지 않습니다." 
                 ControlToValidate="txtEmail" Display="None" 
-                ValidationExpression=
-                    "\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" 
+                ValidationExpression="\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" 
                 SetFocusOnError="True"></asp:RegularExpressionValidator>
         </td>
     </tr>
@@ -57,8 +60,7 @@
             <asp:RegularExpressionValidator ID="valHomepage" runat="server" 
                 ErrorMessage="* 홈페이지를 정확히 작성해주세요." 
                 ControlToValidate="txtHomepage" Display="None"
-                 ValidationExpression=
-                    "http://([\w-]+\.)+[\w-]+(/[\w- ./?%&amp;=]*)?" 
+                 ValidationExpression="https://([\w-]+\.)+[\w-]+(/[\w- ./?%&amp;=]*)?" 
                 SetFocusOnError="True"></asp:RegularExpressionValidator>
         </td>
     </tr>
@@ -138,7 +140,7 @@
     <!--아래는 C# 영역-->
     <% 
         if (!Page.User.Identity.IsAuthenticated)
-        { // 로그인한 뒤에 표시
+        { // 로그인한 아이디가 없으면 밑의 보안코드 출력
     %>
     <tr>
         <td style="text-align:right;">
@@ -154,7 +156,7 @@
                 (아래에 제시되는 보안코드를 입력하십시오.)</span>
             <br />
             <asp:Image ID="imgSecurityImageText" runat="server" 
-                ImageUrl="~/DotNetNote/ImageText.aspx" />
+                ImageUrl="ImageText.aspx" />
             <asp:Label ID="lblError" runat="server" ForeColor="Red"></asp:Label>
         </td>
     </tr>
