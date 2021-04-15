@@ -15,7 +15,9 @@ namespace _210414_DotNetNote.Board
         // 검색모드일때 true, 보통은 false
         public bool SearchMode { get; set; }
 
-        public int RecordCount = 0;   // 총 레코드 수
+        public int RecordCount = 0;   // 총 레코드(게시물) 수
+
+        public int PageIndex = 0;  // 페이징할때 값, 현재 보여줄 페이지 번호
         public BoardList() // 생성자 생성
         {
             _repo = new DbRepository();  // SqlConnection 생성
@@ -29,6 +31,24 @@ namespace _210414_DotNetNote.Board
             }
             LblTotalRecord.Text = $"Total Record : {RecordCount}";
 
+
+            if(Request["Page"] != null)
+            {
+                PageIndex = Convert.ToInt32(Request["Page"]) - 1;
+            }
+            else
+            {
+                PageIndex = 0;    // 1페이지
+            }
+
+            // TODO : 쿠키를 사용해서 리스트 페이지번호 유지
+
+            // 페이징 처리
+            PagingControl.PageIndex = PageIndex;
+            PagingControl.RecordCount = RecordCount;
+
+
+
             if (!Page.IsPostBack)  // 최초로 게시판 사이트를 열었으면
             {
                 DisplayData();
@@ -40,7 +60,7 @@ namespace _210414_DotNetNote.Board
         {
             if (!SearchMode) // 검색모드가 아닐때
             {
-                GrvNotes.DataSource = _repo.GetAll(0);
+                GrvNotes.DataSource = _repo.GetAll(PageIndex); // 페이지  출력
             }
 
             GrvNotes.DataBind(); // 데이터바인딩 끝
