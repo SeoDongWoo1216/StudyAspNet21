@@ -30,6 +30,7 @@ namespace Helpers.Test
             Assert.AreEqual(expected, actual);
         }
 
+        [Ignore]   // []로 쓰는 친구들을 어트리뷰트라고 부르며, 실행하면서 처리를 바꿔주는 동적인 속성중 하나.(이그노어는 이거안하고 넘긴다는뜻)
         [TestMethod]
         public void AddTest()
         {
@@ -37,6 +38,23 @@ namespace Helpers.Test
             var expected = 10;
             var actual = 5 + 5;
             Assert.AreEqual(expected, actual);
+        }
+
+
+        [TestMethod]
+        public void IsPhotoTest()
+        {
+            var imagePath = @"D:\GitRepository\StudyAspNet21\210414_DotNetNote\210414_DotNetNote\images\dnn\key_login.gif";  // 이미지 파일경로
+            bool result = BoardLibrary.IsPhoto(imagePath);
+            Assert.IsTrue(result, "file extension must be png, jpg, gif");
+        }
+
+        [TestMethod]
+        public void IsNotPhotoTest()
+        {
+            var imagePath = @"D:\GitRepository\StudyAspNet21\210414_DotNetNote\210414_DotNetNote\images\dnn\key_login.gif";  // 이미지 파일경로
+            bool result = BoardLibrary.IsPhoto(imagePath);
+            Assert.IsFalse(result, "file extension must be png, jpg, gif");
         }
 
     }
