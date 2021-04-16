@@ -39,7 +39,7 @@ namespace _210414_DotNetNote.Board
             string encoding = note.Encoding;
             if (encoding == "Text")
             {
-                lblContent.Text = Helpers.HtmlUility.EncodeWithTabAndSpace(Content);  // 그냥 Text일때는 탭이나 스페이스로 인코딩
+                lblContent.Text = Helpers.HtmlUtility.EncodeWithTabAndSpace(Content);  // 그냥 Text일때는 탭이나 스페이스로 인코딩
             }
             else if (encoding == "HTML") 
             {

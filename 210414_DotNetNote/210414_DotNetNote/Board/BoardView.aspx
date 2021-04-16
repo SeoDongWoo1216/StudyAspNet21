@@ -1,4 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="BoardView.aspx.cs" Inherits="_210414_DotNetNote.Board.BoardView" %>
+
+<%@ Register Src="~/Controls/CommentControl.ascx" TagPrefix="uc1" TagName="CommentControl" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     <h3 class="text-center">게시판</h3>
@@ -85,10 +88,8 @@
             </tr>
             <tr>
                 <td colspan="4">
-
-                   <%-- <uc1:BoardCommentControl runat="server" 
-                        ID="BoardCommentControl" />--%>
-
+                    <%--댓글 다는 컨트롤이 들어갈 영역--%>
+                    <uc1:CommentControl runat="server" id="CommentControl" />
                 </td>
             </tr>
         </tbody>

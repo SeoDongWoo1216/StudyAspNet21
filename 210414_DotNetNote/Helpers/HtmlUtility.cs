@@ -3,7 +3,7 @@
 namespace Helpers
 {
     // static이 아니므로 클래스를 쓸때마다 new로 만들어줘야함.
-    public class HtmlUility
+    public class HtmlUtility
     {
         #region Encode() 함수
         /// <summary>
