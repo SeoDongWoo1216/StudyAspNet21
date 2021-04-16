@@ -12,7 +12,7 @@
     <% if (!String.IsNullOrEmpty(Request.QueryString["Id"]) && 
             FormType == _210414_DotNetNote.Models.BoardWriteFormType.Modify) { %>    
     <tr>
-        <td class="BoardWriteFormTableLeftStyle">
+        <td style="text-align:right; padding-right:5px" >
             <span style="color: #ff0000;">*</span>번 호
         </td>
         <td style="width:500px;">
@@ -21,7 +21,7 @@
     </tr>
     <% } %>
     <tr>
-        <td style="text-align:right">
+        <td style="text-align:right; padding-right:5px" >
             <span style="color: #ff0000;">*</span>이&nbsp;름
         </td>
         <td style="width:500px;">
@@ -36,7 +36,7 @@
         </td>
     </tr>
     <tr>
-        <td style="text-align:right;">E-mail
+        <td style="text-align:right; padding-right:5px">E-mail
         </td>
         <td>
             <asp:TextBox ID="txtEmail" runat="server" 
@@ -51,7 +51,7 @@
         </td>
     </tr>
     <tr>
-        <td style="text-align:right;">Homepage</td>
+        <td style="text-align:right; padding-right:5px">Homepage</td>
         <td>
             <asp:TextBox ID="txtHomepage" runat="server" 
                 CssClass="form-control" style="display:inline-block;" 
@@ -65,7 +65,7 @@
         </td>
     </tr>
     <tr>
-        <td style="text-align:right;">
+        <td style="text-align:right; padding-right:5px">
             <span style="color: #ff0000;">*</span>제 목
         </td>
         <td>
@@ -78,7 +78,7 @@
         </td>
     </tr>
     <tr>
-        <td style="text-align:right;">
+        <td style="text-align:right; padding-right:5px">
             <span style="color: #ff0000;">*</span>내 용
         </td>
         <td>
@@ -92,7 +92,7 @@
         </td>
     </tr>
     <tr>
-        <td style="text-align:right;">파일첨부</td>
+        <td style="text-align:right; padding-right:5px">파일첨부</td>
         <td>
             <asp:CheckBox ID="chkUpload" runat="server" CssClass="check-inline" 
                 Text="이 체크박스를 선택하면 업로드 화면이 나타납니다." 
@@ -110,7 +110,7 @@
         </td>
     </tr>
     <tr>
-        <td style="text-align:right;">
+        <td style="text-align:right; padding-right:5px">
             <span style="color: #ff0000;">*</span>인코딩
         </td>
         <td>
@@ -123,7 +123,7 @@
         </td>
     </tr>
     <tr>
-        <td style="text-align:right;">
+        <td style="text-align:right; padding-right:5px">
             <span style="color: #ff0000;">*</span>비밀번호
         </td>
         <td>
@@ -143,7 +143,7 @@
         { // 로그인한 아이디가 없으면 밑의 보안코드 출력
     %>
     <tr>
-        <td style="text-align:right;">
+        <td style="text-align:right; padding-right:5px">
             <span style="color: #ff0000;">*</span>보안코드
         </td>
         <td>
