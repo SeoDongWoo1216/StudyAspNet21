@@ -4,7 +4,7 @@ namespace Helpers
 {
     // 파일 처리 관련 기본 유틸리티
     // static이 아니므로 클래스를 쓸때마다 new로 만들어줘야함.
-    public class FileUtilty
+    public class FileUtility
     {
         #region 중복된 파일명 뒤에 번호 붙이는 메서드 : GetFileNameWithNumbering
         /// <summary>
