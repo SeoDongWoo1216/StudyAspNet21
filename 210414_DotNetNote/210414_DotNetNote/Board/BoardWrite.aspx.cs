@@ -1,6 +1,7 @@
 ﻿using _210414_DotNetNote.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -14,10 +15,14 @@ namespace _210414_DotNetNote.Board
 
         private string _Id;    // 리스트에서 넘겨주는 번호
         // private string _Mode;  // 뷰에서 넘겨주는 모드 값 // Edit, reply
+
+        private string _BaseDir = "";   // GitRepository\StrudyAspNET21\... Files  를 처리할것임.
+        private string _FileName = "";  // 파일명
+        private int _FileSize = 0;      // 파일사이즈
+
         protected void Page_Load(object sender, EventArgs e)
         {
             _Id = Request["Id"];      //  GET / POST를 모두다 받음
-
 
             if (!Page.IsPostBack)
             {
@@ -78,7 +83,7 @@ namespace _210414_DotNetNote.Board
 
         protected void chkUpload_CheckedChanged(object sender, EventArgs e)
         {
-
+            pnlFile.Visible = !pnlFile.Visible;
         }
 
         protected void btnWrite_Click(object sender, EventArgs e)
@@ -89,16 +94,17 @@ namespace _210414_DotNetNote.Board
                 else if (ViewState["Mode"].ToString() == "Reply") FormType = BoardWriteFormType.Reply;
                 else FormType = BoardWriteFormType.Write;
 
-                // TODO : 파일 업로드
+                UploadFile();  // 파일업로드
+
                 Note note = new Note();
                 note.Id = Convert.ToInt32(_Id);  // 값이 없으면 0
-                note.Name = txtName.Text;
+                note.Name = txtName.Text;    // 필수
                 note.Email = txtEmail.Text;
-                note.Title = txtTitle.Text;
+                note.Title = txtTitle.Text;  // 필수
                 note.Homepage = txtHomepage.Text;
-                note.Content = txtContent.Text;
-                note.FileName = "";
-                note.FileSize = 0;
+                note.Content = txtContent.Text;  // 필수
+                note.FileName = _FileName;
+                note.FileSize = _FileSize;
                 note.Password = txtPassword.Text;
                 note.PostIp = Request.UserHostAddress;
                 note.Encoding = rdoEncoding.SelectedValue; // Text, Html, Mixed 가 들어감
@@ -114,7 +120,11 @@ namespace _210414_DotNetNote.Board
 
                     case BoardWriteFormType.Modify:
                         note.ModifyIp = Request.UserHostAddress;
+
                         // TODO : file 처리
+                        note.FileName = ViewState["FileName"].ToString();
+                        note.FileSize = Convert.ToInt32(ViewState["FileSize"]);
+
                         if (repo.UpdateNote(note) > 0) Response.Redirect($"BoardView.aspx?Id={_Id}");
                         else lblError.Text = "업데이트 실패, 암호를 확인하세요.";
                         break;
@@ -135,6 +145,46 @@ namespace _210414_DotNetNote.Board
             else
             {
                 lblError.Text = "보안코드가 틀립니다. 다시 입력하세요.";
+            }
+        }
+
+        /// <summary>
+        /// 추가 : 파일업로드 처리
+        /// </summary>
+        private void UploadFile()
+        {
+            _BaseDir = Server.MapPath("../Files");  // /Files 가 있는 디렉터리 앞의 모든 경로가 들어감.
+            // 들어가는 경로 : 'D:\GitRepository\StudyAspNet21\210414_DotNetNote\210414_DotNetNote'   \Files
+            _FileName = "";
+            _FileSize = 0;
+
+            if(txtFileName.PostedFile != null)
+            {
+                if(txtFileName.PostedFile.FileName.Trim().Length != 0
+                    && txtFileName.PostedFile.ContentLength > 0)  // 파일의 이름이 있으면
+                {
+                   if(FormType == BoardWriteFormType.Modify)  // 폼타입이 'Modify' 일 경우
+                    {
+                        // ViewState 페이지가 떠있는동안 담아놓는 전역 변수 값
+                        ViewState["FileName"] = Helpers.FileUtility.GetFileNameWithNumbering(_BaseDir, txtFileName.PostedFile.FileName);
+                        ViewState["FileSize"] = txtFileName.PostedFile.ContentLength;
+
+                        // 업로드
+                        txtFileName.PostedFile.SaveAs(Path.Combine(_BaseDir, ViewState["FileName"].ToString()));
+                    }
+                    else  // 폼타입이 'Write', 'Reply' 일 경우
+                    {
+                        // 파일저장에있어 가장 중요한 핵심 프로세스
+                        // 폴더에 이미 test.txt 있으면 test(1).txt 로 변경해줌.
+                        _FileName = Helpers.FileUtility.GetFileNameWithNumbering(_BaseDir, Path.GetFileName(txtFileName.PostedFile.FileName));
+                        //  Path.GetFileName 를 통해 파일의 경로를빼고 파일이름만 가져와줌.
+
+                        _FileSize = txtFileName.PostedFile.ContentLength;
+
+                        // 업로드
+                        txtFileName.PostedFile.SaveAs(Path.Combine(_BaseDir, _FileName));   // Path.Combin e을통해 경로와 파일이름을 합쳐줌.
+                    }
+                }
             }
         }
 

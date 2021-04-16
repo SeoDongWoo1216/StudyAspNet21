@@ -54,7 +54,16 @@ namespace _210414_DotNetNote.Board
             lblHomepage.Text = $"<a href='{note.Homepage}' target='_blank'>{note.Homepage}</a>";
             // 위의 lblEmail.Text = string.Format("<a href='mailto:{0}'>{0}</a>", note.Email); 랑 똑같은 유형의 코드
             lblPostDate.Text = note.PostDate.ToString();
-            lblPostIP.Text = note.PostIp.ToString();
+            lblPostIP.Text = note.PostIp;
+
+            if(note.FileName.Length > 1)
+            {
+                lblFile.Text = $"{note.FileName} / 다운로드 {note.DownCount}";
+            }
+            else
+            {
+                lblFile.Text = "(None)";
+            }
 
         }
     }

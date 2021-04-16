@@ -1,6 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="BoardList.aspx.cs" Inherits="_210414_DotNetNote.Board.BoardList" %>
 
 <%@ Register Src="~/Controls/PagingControl.ascx" TagPrefix="uc1" TagName="PagingControl" %>
+<%@ Register Src="~/Controls/SearchControl.ascx" TagPrefix="uc1" TagName="SearchControl" %>
+
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
@@ -11,7 +13,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <asp:Literal ID="LblTotalRecord" runat="server"></asp:Literal>
+                <asp:Literal ID="LblTotalRecord" runat="server"></asp:Literal><br />
+                <uc1:SearchControl runat="server" ID="SearchControl" />
                 <asp:GridView ID="GrvNotes" runat="server" AutoGenerateColumns="false"
                     DataKeyNames="Id" CssClass="table table-bordered table-hover table-striped table-responsive">
                     <Columns>
@@ -39,7 +42,6 @@
                             HeaderStyle-Width="70px"
                             ItemStyle-HorizontalAlign="Center">
                             <ItemTemplate>
-                                <%--<%# Eval("FileName").ToString() %>--%>
                                 <%# Helpers.BoardLibrary.FuncFileDownSingle(
                                     Convert.ToInt32(Eval("Id")), 
                                     Eval("FileName").ToString(), 

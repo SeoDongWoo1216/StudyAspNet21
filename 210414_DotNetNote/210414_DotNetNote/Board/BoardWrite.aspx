@@ -101,9 +101,9 @@
             <span style="color:#aaaaaa;font-style:italic">(Optional)</span>
             <br />
             <asp:Panel ID="pnlFile" runat="server" Width="480px" 
-                Visible="false" Height="25px">
-                <input id="txtFileName" style="width: 290px; 
-                    height: 19px" type="file" name="txtFileName" runat="server">
+                Visible="false" Height="35px">
+                <input id="txtFileName" style="width: 290px; height: 35px"
+                    type="file" name="txtFileName" runat="server">
                 <asp:label ID="lblFileNamePrevious" text="" runat="server" 
                     Visible="false" />
             </asp:Panel>

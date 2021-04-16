@@ -123,6 +123,7 @@
     <Content Include="About.aspx" />
     <Content Include="Board\BoardCommentDelete.aspx" />
     <Content Include="Board\BoardDelete.aspx" />
+    <Content Include="Board\BoardDown.aspx" />
     <Content Include="Board\BoardList.aspx" />
     <Content Include="Board\BoardView.aspx" />
     <Content Include="Board\BoardWrite.aspx" />
@@ -135,6 +136,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Controls\CommentControl.ascx" />
     <Content Include="Controls\PagingControl.ascx" />
+    <Content Include="Controls\SearchControl.ascx" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -327,6 +329,13 @@
     <Compile Include="Board\BoardDelete.aspx.designer.cs">
       <DependentUpon>BoardDelete.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Board\BoardDown.aspx.cs">
+      <DependentUpon>BoardDown.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Board\BoardDown.aspx.designer.cs">
+      <DependentUpon>BoardDown.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Board\BoardList.aspx.cs">
       <DependentUpon>BoardList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -376,6 +385,13 @@
     <Compile Include="Controls\PagingControl.ascx.designer.cs">
       <DependentUpon>PagingControl.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Controls\SearchControl.ascx.cs">
+      <DependentUpon>SearchControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\SearchControl.ascx.designer.cs">
+      <DependentUpon>SearchControl.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -415,6 +431,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Files\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
