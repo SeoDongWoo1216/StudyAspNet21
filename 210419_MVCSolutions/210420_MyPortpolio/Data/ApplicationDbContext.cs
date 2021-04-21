@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using _210420_MyPortpolio.Models;
 
 namespace _210420_MyPortpolio.Data
 {
@@ -12,5 +13,8 @@ namespace _210420_MyPortpolio.Data
             : base(options)
         {
         }
+        public DbSet<Contact> Contact { get; set; }
+        public DbSet<Account> Account { get; set; }
+        public DbSet<Board> Boards { get; set; }
     }
 }
