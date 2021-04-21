@@ -27,6 +27,17 @@ namespace _210420_MyPortpolio
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Session 사용시 꼭 추가해야함
+            services.AddDistributedMemoryCache();
+            services.AddSession(opt => 
+            {
+                opt.IdleTimeout = TimeSpan.FromMinutes(10);   // 10분 마다 타임아웃
+                opt.Cookie.HttpOnly = true;
+                opt.Cookie.IsEssential = true;
+            });
+            // Session 사용시 꼭 추가해야함
+
+            #region
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
@@ -35,6 +46,7 @@ namespace _210420_MyPortpolio
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
+            #endregion
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,6 +70,7 @@ namespace _210420_MyPortpolio
 
             app.UseAuthentication();
             app.UseAuthorization();
+            app.UseSession();  // 이거 없으면 HttpContext.Session 액세스 접근 불가(무조건 필요한 한줄)
 
             app.UseEndpoints(endpoints =>
             {
