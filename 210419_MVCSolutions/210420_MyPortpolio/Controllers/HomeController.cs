@@ -1,4 +1,5 @@
-﻿using _210420_MyPortpolio.Models;
+﻿using _210420_MyPortpolio.Data;
+using _210420_MyPortpolio.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -11,11 +12,14 @@ namespace _210420_MyPortpolio.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly ApplicationDbContext _context;
+
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
         public IActionResult Index()
@@ -30,7 +34,9 @@ namespace _210420_MyPortpolio.Controllers
 
         public IActionResult Profile()
         {
-            return View();
+            var profile = _context.Manages.FirstOrDefault(p => p.Category.Equals("Profile"));
+
+            return View(profile);
         }
 
         public IActionResult Portfolio()
