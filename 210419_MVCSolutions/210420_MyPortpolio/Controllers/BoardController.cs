@@ -6,8 +6,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using _210420_MyPortpolio.Models;
+using X.PagedList;
+using _210420_MyPortpolio.Data;
 
-namespace _210420_MyPortpolio.Data
+namespace _210420_MyPortpolio.Controllers
 {
     public class BoardController : Controller
     {
@@ -19,10 +21,15 @@ namespace _210420_MyPortpolio.Data
         }
 
         // GET: Board
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? page)
         {
-            return View(await _context.Boards.ToListAsync());
+            var pageNumber = page ?? 1; // page 값이 null이면 1
+            var pageSize = 6;   // 조정 필요
+
+            var boards = await _context.Boards.ToPagedListAsync(pageNumber, pageSize);  // ToPagedList : X.PagedList 라이브러리 사용
+            return View(boards);
         }
+
 
         // GET: Board/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -38,6 +45,11 @@ namespace _210420_MyPortpolio.Data
             {
                 return NotFound();
             }
+
+            // ReadCount 증가(엔티티 프레임워크로 DB에 접근해서 쿼리문을 굳이 작성안해도된다)
+            board.ReadCount += 1;
+            _context.Boards.Update(board);
+            _context.SaveChanges();   // 커밋(반드시 필요함)
 
             return View(board);
         }

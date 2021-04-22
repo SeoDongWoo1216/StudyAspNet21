@@ -1,80 +1,85 @@
-﻿@model IEnumerable<_210420_MyPortpolio.Models.Board>
+﻿@model IPagedList<_210420_MyPortpolio.Models.Board>
 
 @{
-    ViewData["Title"] = "Board";
+    ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_LoginLayout.cshtml";
 }
-
-
+@using X.PagedList;
+@using X.PagedList.Mvc.Core;
+@using X.PagedList.Web.Common;
 
 <div class="col-lg col-md ml-auto mr-auto">
     <div class="card card-login">
-        <div class="section section-contacts">
+        <div class="section section-contacts" style="padding: 40px 0;">
             <div class="row">
                 <div class="col-md-11 ml-auto mr-auto">
-                    <h3 class="text-center title" style="color:black; vertical-align:top">Board</h3>
-
+                    <h3 class="text-center" style="font-weight: bold; color: black; margin-top: 0px">Board</h3>
                     <p>
-                        <a asp-action="Create" class="btn btn-primary" >글쓰기</a>
+                        <a asp-action="Create" class="btn btn-primary">글쓰기</a>
                     </p>
                     <table class="table">
                         <thead>
                             <tr>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.Id)
+                                    번호@*@Html.DisplayNameFor(model => model.First().Id)*@
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.Subject)
+                                    제목@*@Html.DisplayNameFor(model => model.First().Subject)*@
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.Writer)
+                                    작성자@*@Html.DisplayNameFor(model => model.First().Writer)*@
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.RegDate)
+                                    등록일@*@Html.DisplayNameFor(model => model.First().RegDate)*@
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.ReadCount)
+                                    조회수@*@Html.DisplayNameFor(model => model.First().ReadCount)*@
                                 </th>
-                                <th></th>
+                                <th>기능</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach (var item in Model)
                             {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Id)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Subject)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Writer)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.RegDate)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.ReadCount)
-                                </td>
-                                <td>
-                                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Id)
+                                    </td>
+                                    <td>
+                                        <a asp-action="Details" asp-route-id="@item.Id">
+                                            @Html.DisplayFor(modelItem => item.Subject)
+                                        </a>
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Writer)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.RegDate)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ReadCount)
+                                    </td>
+                                    <td>
+                                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-default">수정</a> |
+                                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">삭제</a>
+                                    </td>
+                                </tr>
                             }
                         </tbody>
                     </table>
 
-
+                    <div class="pull-center">
+                        @Html.PagedListPager((IPagedList)Model,
+                            page => Url.Action("Index", new { page }),
+                            new PagedListRenderOptionsBase
+                                 {
+                                LiElementClasses = new string[] { "page-item" },
+                                PageClasses = new string[] { "page-link" },
+                                Display = PagedListDisplayMode.IfNeeded
+                            })
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-
-
-
-
