@@ -46,17 +46,13 @@ namespace _210420_MyPortpolio.Controllers
                     return RedirectToAction("Index", "Home");
                 }
             }
-            return null;
+            return View("Login");  // null에서 변경했음
         }
 
         private Account CheckAccount(string email, string password)
         {
             return _context.Account.SingleOrDefault(a => a.Email.Equals(email) && a.Password.Equals(password));
         }
-
-
-
-
 
 
 
