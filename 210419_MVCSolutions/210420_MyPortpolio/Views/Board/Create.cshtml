@@ -5,14 +5,15 @@
     Layout = "~/Views/Shared/_LoginLayout.cshtml";
 }
 
+<script src="~/plugin/ckeditor_4.16.0_full/ckeditor/ckeditor.js"></script>
 
 
 <div class="col-lg col-md ml-auto mr-auto">
     <div class="card card-login">
-        <div class="section section-contacts">
+        <div class="section section-contacts" style="padding: 40px 0;">
             <div class="row">
                 <div class="col-md-11 ml-auto mr-auto">
-                    <h1 class="text-center title" style="color:black">Board</h1>
+                    <h3 class="text-center" style="font-weight: bold; color: black; margin-top: 0px">Board</h3>
                     <form asp-action="Create">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <div class="form-group">
@@ -26,12 +27,18 @@
                             <span asp-validation-for="Writer" class="text-danger"></span>
                         </div>
                         <div class="form-group">
-                            <label asp-for="Contents" class="control-label"></label>
+                            @*<label asp-for="Contents" class="control-label"></label>
                             <textarea asp-for="Contents" class="form-control"></textarea>
-                            <span asp-validation-for="Contents" class="text-danger"></span>
+                            <span asp-validation-for="Contents" class="text-danger"></span>*@
+
+                            @Html.LabelFor(model => model.Contents, new { @class = "control-label" })
+                            @Html.TextAreaFor(model => model.Contents,
+                                  new { @id = "EditorContents", @class = "form-control", @row = "10" })
+                            <script>CKEDITOR.replace("EditorContents");</script>
                         </div>
+
                         <div class="form-group">
-                            <input type="submit" value="Create" class="btn btn-info" /> |
+                            <input type="submit" value="저장" class="btn btn-info" /> |
                             <a asp-action="Index" class="btn btn-light">뒤로</a>
                         </div>
                     </form>

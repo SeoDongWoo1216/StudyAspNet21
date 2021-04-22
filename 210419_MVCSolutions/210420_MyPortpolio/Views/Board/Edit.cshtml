@@ -5,35 +5,40 @@
     Layout = "~/Views/Shared/_LoginLayout.cshtml";
 }
 
+<script src="~/plugin/ckeditor_4.16.0_full/ckeditor/ckeditor.js"></script>
+
 <div class="col-lg col-md ml-auto mr-auto">
     <div class="card card-login">
-        <div class="section section-contacts">
+        <div class="section section-contacts" style="padding: 40px 0;">
             <div class="row">
                 <div class="col-md-11 ml-auto mr-auto">
-                    <h1 class="text-center title" style="color:black">Board</h1>
+                    <h3 class="text-center" style="font-weight: bold; color: black; margin-top: 0px">Board</h3>
                     <form asp-action="Edit">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <input type="hidden" asp-for="Id" />
                         <div class="form-group">
-                            <label asp-for="Subject" class="control-label"></label>
+                            <label asp-for="Subject" class="control-label">제목</label>
                             <input asp-for="Subject" class="form-control" />
                             <span asp-validation-for="Subject" class="text-danger"></span>
                         </div>
                         <div class="form-group">
-                            <label asp-for="Writer" class="control-label"></label>
+                            <label asp-for="Writer" class="control-label">작성자</label>
                             <input asp-for="Writer" class="form-control" />
                             <span asp-validation-for="Writer" class="text-danger"></span>
                         </div>
                         <div class="form-group">
-                            <label asp-for="Contents" class="control-label"></label>
-                            <textarea asp-for="Contents" class="form-control"></textarea>
-                            <span asp-validation-for="Contents" class="text-danger"></span>
+                            @*index에 @Html 라벨, textareafor랑 똑같은 구문임*@
+                            <label asp-for="Contents" class="control-label">내용</label>
+                            <textarea asp-for="Contents" id="EditorContents" class="form-control" rows="10"></textarea>
+                            <script>CKEDITOR.replace("EditorContents");</script>
                         </div>
 
                         <div class="form-group">
-                            <label asp-for="RegDate" class="control-label"></label>
+                            <label asp-for="RegDate" class="control-label">등록일</label>
                             <input asp-for="RegDate" class="form-control" readonly />
                         </div>
+
+                        <input asp-for="ReadCount" type="hidden" /> @*이 구문으로 수정될때마다 ReadCount가 0으로 초기화되는것을 막아줌*@
                         <div class="form-group">
                             <input type="submit" value="Save" class="btn btn-info" /> |
                             <a asp-action="Index" class="btn btn-light">뒤로</a>
