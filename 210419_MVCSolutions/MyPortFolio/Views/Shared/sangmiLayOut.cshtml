@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="descripton" content="포토폴리오">
+    <title>포트폴리오</title>
+    <link rel="shortcut icon" type="image/x-icon" href="./assets/">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/master.css">
+
+
+    <script src="~/js/jquery1.js"></script>
+    <script src="~/js/jquery2.js"></script>
+
+
+
+    <link rel="stylesheet" href="css/main.css" />
+</head>
+<body class="loading">
+
+    <nav id="main_nav">
+        <ul>
+            <li><a href="#home">HOME</a></li>
+            <li><a href="#skill">SKILL</a></li>
+            <li><a href="#abuot">ABUOT</a></li>
+            <li><a href="#portfolio">PORTFOLIO</a></li>
+            <li><a href="#vision">VISION</a></li>
+            <li><a href="#contact01">CONTACT</a></li>
+        </ul>
+    </nav><!--// 스크롤이 아래로 내려갈 경우 상단에서 내려오는 메뉴-->
+
+    <script>
+        $(function () {
+            setInterval(function () {
+
+                if ($(window).scrollTop() >= 100) {
+                    $("#main_nav").animate({ top: 0 }, 500);
+                } else {
+                    $("#main_nav").animate({ top: -80 }, 500);
+                }
+            }, 1000);
+        });
+    </script>
+
+    <div>
+        <label for="toggle" class="menu_open"></label>
+    </div>
+
+    <input id="toggle" type="checkbox">
+    <div class="toggle_nav">
+        <label for="toggle" class="menu_close"></label>
+        <ul>
+            <li><a href="#home">HOME</a></li>
+            <li><a href="#skill">SKILL</a></li>
+            <li><a href="#abuot">ABUOT</a></li>
+            <li><a href="#portfolio">PORTFOLIO</a></li>
+            <li><a href="#vision">VISION</a></li>
+            <li><a href="#contact01">CONTACT</a></li>
+        </ul>
+    </div>
+
+
+
+    <!--배경소스 시작-->
+    <div id="wrapper">
+        <div id="bg"></div>
+        <div id="overlay"></div>
+        <div id="main">
+            <!-- Header -->
+            <header id="header">
+                <h1>Welcome To My Portfolio</h1>
+                <p> 포트폴리오</p>
+                <nav>
+                    <ul>
+                        <li><a href="#" class="icon fa-html5"><span class="label">SKILL</span></a></li>
+                        <li><a href="#" class="icon fa-css3"><span class="label">VISION</span></a></li>
+                        <li><a href="#" class="icon fa-apple"><span class="label">PORTFOLIO</span></a></li>
+                        <li><a href="#" class="icon fa-facebook"><span class="label">ABUOT</span></a></li>
+                        <li><a href="#" class="icon fa-bicycle"><span class="label">CONTACT</span></a></li>
+                    </ul>
+                </nav>
+            </header>
+        </div>
+    </div>
+    <script>
+        window.onload = function () { document.body.className = ''; }
+        window.ontouchmove = function () { return false; }
+        window.onorientationchange = function () { document.body.scrollTop = 0; }
+    </script>
+    <!--배경소스 끝-->
+
+    <div class="container">
+        @RenderBody()
+    </div>
+
+</body>
+</html>
